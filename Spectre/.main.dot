@@ -1,0 +1,5 @@
+digraph "CFG for 'main' function" {
+	label="CFG for 'main' function";
+
+	Node0x564727a8aa20 [shape=record,label="{entry:\l  %0 = alloca i64, align 8\l  %StackAdj = alloca i64, align 8\l  %1 = alloca i32, align 4\l  %2 = ptrtoint i64* %0 to i64\l  store i32 0, i32* %1, align 4\l  %3 = call i32 @gadget()\l  ret i32 %3\l}"];
+}

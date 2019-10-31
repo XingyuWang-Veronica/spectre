@@ -15,22 +15,27 @@ using namespace llvm;
  * %1 = mul nsw %secret, 512 (or %1 = shl %secret, 9)
  * %2 = sext i32 %1 to i64
  * %3 = getelementptr inbounds i32, i32* getelementptr inbounds (...), i64 %2
+ * %4 = load i32, i32* %3, align 4
  *
- * NOTE: there can be multiple store + load between 1 and 2, and between 2 and 3
+ * NOTES:
+ * (1) there can be multiple store + load between 1 and 2, between 2 and 3, and between 3 and 4
+ * (2) for now, assume that the depth of store + load is only one
  */
 
 /* 
  * valid state diagram:
- * 		init -> mul -> (storeAfterMul -> mul) -> sext -> (storeAfterSext -> sext) -> getelementptr
+ * 		init -> mul -> (storeAfterMul -> mul) -> sext -> (storeAfterSext -> sext) -> getelementptr -> (storeAfterGet -> getelementptr) -> load
  * 
  * init: 
  * mul: mul / shl / load (after store)
  * storeAfterMul: store
  * sext: sext / load (after store)
  * storeAfterSext: store
- * getelementptr: getelementptr
+ * getelementptr: getelementptr / load (after store)
+ * storeAfterGet: store
+ * load: load
  */
-enum Status {init, mul, storeAfterMul, sext, storeAfterSext, getelementptr, invalid};
+enum Status {init, mul, storeAfterMul, sext, storeAfterSext, getelementptr, storeAfterGet, load, invalid};
 std::unordered_map<Status, std::string> statusString;
 
 namespace {
@@ -50,6 +55,8 @@ namespace {
 			statusString[sext] = "sext";
 			statusString[storeAfterSext] = "storeAfterSext";
 			statusString[getelementptr] = "getelementptr";
+			statusString[storeAfterGet] = "storeAfterGet";
+			statusString[load] = "load";
 			statusString[invalid] = "invalid";
 			for (BasicBlock &BB: F) {
 				for (Instruction &I: BB) {
@@ -103,6 +110,15 @@ namespace {
 								cur_status = sext;
 							} else if (op == "getelementptr" && front_status == sext) {
 								cur_status = getelementptr;
+								// TODO: restriction
+								// errs() << "Found the gadget!\n";
+								// return false;
+							} else if (op == "store" && front_status == getelementptr) {
+								cur_status = storeAfterGet;
+							} else if (op == "load" && front_status == storeAfterGet) {
+								cur_status = getelementptr;
+							} else if (op == "load" && front_status == getelementptr) {
+								cur_status = load;
 								errs() << "Found the gadget!\n";
 								return false;
 							} else {

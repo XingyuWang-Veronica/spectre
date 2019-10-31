@@ -29,7 +29,7 @@ using namespace llvm;
  * storeAfterSext: store
  * getelementptr: getelementptr
  */
-enum Status {mul, storeAfterMul, sext, storeAfterSext, getelementptr};
+enum Status {mul, storeAfterMul, sext, storeAfterSext, getelementptr, invalid};
 
 namespace {
 	struct Spectre: public FunctionPass {
@@ -77,7 +77,30 @@ namespace {
 							values.pop_front();
 							Status front_status = val2status[front_val];
 							std::string op = std::string(front_val->getOpcodeName());
-							// 
+							Status cur_status;
+							if (op == "store" && front_status == mul) {
+								cur_status = storeAfterMul;
+							} else if (op == "load" && front_status == storeAfterMul) {
+								cur_status = mul;
+							} else if (op == "store" && front_status == mul) {
+								cur_status = sext;
+							} else if (op == "store" && front_status == sext) {
+								cur_status = storeAfterSext;
+							} else if (op == "load" && front_status == storeAfterSext) {
+								cur_status = sext;
+							} else if (op == "getelementptr" && front_status == sext) {
+								cur_status = getelementptr;
+								errs() << "Found the gadget!\n";
+								return false;
+							} else {
+								cur_status = invalid;
+								continue;
+							}
+							for (auto user: front_val->users()) {
+								if (auto i = dyn_cast<Instruction>(user)) {
+									Instruction *ii = cast<Instruction>(user);
+								}
+							}
 						}
 					}
 				}

@@ -102,7 +102,7 @@ namespace {
 								cur_status = storeAfterMul;
 							} else if (op == "load" && front_status == storeAfterMul) {
 								cur_status = mul;
-							} else if (op == "sext" && front_status == mul) {
+							} else if ((op == "zest" || "sext") && front_status == mul) {
 								cur_status = sext;
 							} else if (op == "store" && front_status == sext) {
 								cur_status = storeAfterSext;

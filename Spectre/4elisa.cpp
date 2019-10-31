@@ -77,7 +77,7 @@ namespace {
 					}
 					if (find_mul) {
 						errs() << "find mul is true\n";
-						val2status[&I] = mul;
+						val2status[&I] = init;
 						// state diagram, initial stage is init
 						std::deque<Instruction *> values;
 						values.push_back(&I);
@@ -110,7 +110,8 @@ namespace {
 								continue;
 							}
 							errs() << "cur_status is " << statusString[cur_status] << '\n';
-							for (auto user: front_val->users()) {
+							Value *valInLoop = (op == "store")? front_val->getOperand(1): front_val;
+							for (auto user: valInLoop->users()) {
 								if (isa<Instruction>(user)) {
 									Instruction *ii = cast<Instruction>(user);
 									val2status[ii] = cur_status;

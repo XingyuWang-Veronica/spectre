@@ -24,7 +24,7 @@ using namespace llvm;
 
 /* 
  * valid state diagram:
- * 		init -> mul -> (storeAfterMul -> mul) -> sext -> (storeAfterSext -> sext) -> getelementptr -> (storeAfterGet -> getelementptr) -> load
+ * 		init -> mul / shl -> (storeAfterMul / storeAfterShl -> mul / shl) -> sext / zext -> (storeAfterSext / storeAfterZext -> sext / zext) -> getelementptr -> (storeAfterGet -> getelementptr) -> load
  * 
  * init: 
  * mul: mul / shl / load (after store)
@@ -35,7 +35,7 @@ using namespace llvm;
  * storeAfterGet: store
  * load: load
  */
-enum Status {init, mul, storeAfterMul, sext, storeAfterSext, getelementptr, storeAfterGet, load, invalid};
+enum Status {init, mul, shl, storeAfterMul, storeAfterShl, sext, zext, storeAfterSext, storeAfterZext, getelementptr, storeAfterGet, load, invalid};
 std::unordered_map<Status, std::string> statusString;
 
 namespace {
@@ -51,9 +51,13 @@ namespace {
 			std::unordered_map<Instruction *, Status> val2status;
 			statusString[init] = "init";
 			statusString[mul] = "mul"; 
+			statusString[shl] = "shl";
 			statusString[storeAfterMul] = "storeAfterMul";
+			statusString[storeAfterShl] = "storeAfterShl";
 			statusString[sext] = "sext";
+			statusString[zext] = "zext";
 			statusString[storeAfterSext] = "storeAfterSext";
+			statusString[storeAfterZext] = "storeAfterZext";
 			statusString[getelementptr] = "getelementptr";
 			statusString[storeAfterGet] = "storeAfterGet";
 			statusString[load] = "load";
@@ -62,6 +66,7 @@ namespace {
 				for (Instruction &I: BB) {
 					std::string op = std::string(I.getOpcodeName());
 					bool find_mul = false;
+					bool is_mul = false;
 					if (op == "shl") {
 						// TODO: check
 						if (ConstantInt *CI = dyn_cast<ConstantInt>(I.getOperand(1))) {
@@ -79,12 +84,14 @@ namespace {
 							if (CI->getSExtValue() >= 512) {
 								errs() << "mul by " << CI->getSExtValue() << "\n";
 								find_mul = true;
+								is_mul = true;
 							}
 						}
 					}
 					if (find_mul) {
 						errs() << "find mul is true\n";
-						val2status[&I] = init;
+						val2status[&I] = is_mul? mul: shl;
+						bool started = false;
 						// state diagram, initial stage is init
 						std::deque<Instruction *> values;
 						values.push_back(&I);
@@ -96,19 +103,30 @@ namespace {
 							std::string op = std::string(front_val->getOpcodeName());
 							errs() << "op is " << op << '\n';
 							Status cur_status;
-							if ((op == "mul" || op == "shl") && front_status == init) {
-								cur_status = mul;
+							if ((op == "mul" || op == "shl") && !started) {
+								started = true;
+								cur_status = front_status;
 							} else if (op == "store" && front_status == mul) {
 								cur_status = storeAfterMul;
 							} else if (op == "load" && front_status == storeAfterMul) {
 								cur_status = mul;
-							} else if ((op == "zest" || "sext") && front_status == mul) {
+							} else if (op == "store" && front_status == shl) {
+								cur_status = storeAfterShl;
+							} else if (op == "load" && front_status == storeAfterShl) {
+								cur_status = shl;
+							} else if (op == "sext" && (front_status == mul || front_status == shl)) {
 								cur_status = sext;
+							} else if (op == "zext" && (front_status == mul || front_status == shl)) {
+								cur_status = zext;
 							} else if (op == "store" && front_status == sext) {
 								cur_status = storeAfterSext;
 							} else if (op == "load" && front_status == storeAfterSext) {
 								cur_status = sext;
-							} else if (op == "getelementptr" && front_status == sext) {
+							} else if (op == "store" && front_status == zext) {
+								cur_status = storeAfterZext;
+							} else if (op == "load" && front_status == storeAfterZext) {
+								cur_status = zext;
+							} else if (op == "getelementptr" && (front_status == sext || front_status == zext)) {
 								cur_status = getelementptr;
 								// TODO: restriction
 								// errs() << "Found the gadget!\n";

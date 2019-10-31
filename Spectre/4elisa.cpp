@@ -66,8 +66,8 @@ namespace {
 						// TODO: check
 						if (ConstantInt *CI = dyn_cast<ConstantInt>(I.getOperand(1))) {
 							// errs() << "shl by a constant value\n";
-							if (CI->getSExtValue() == 9) {
-								errs() << "shl by 9\n";
+							if (CI->getSExtValue() >= 9) {
+								errs() << "shl by " << CI->getSExtValue() << "\n";
 								find_mul = true;
 							}
 						}
@@ -76,8 +76,8 @@ namespace {
 						if (ConstantInt *CI = dyn_cast<ConstantInt>(I.getOperand(1))) { 
 							// errs() << "mul by a constant value\n";
 							// errs() << "mul by " << CI->getSExtValue() << '\n';
-							if (CI->getSExtValue() == 512) {
-								errs() << "mul by 512\n";
+							if (CI->getSExtValue() >= 512) {
+								errs() << "mul by " << CI->getSExtValue() << "\n";
 								find_mul = true;
 							}
 						}

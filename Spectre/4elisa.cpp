@@ -26,8 +26,8 @@ namespace {
 		}
 
 		bool runOnFunction(Function &F) override {
-			for (BasicBlock *BB: F) {
-				for (Instruction *I: BB) {
+			for (BasicBlock &BB: F) {
+				for (Instruction &I: BB) {
 					std::string op = std::string(I.getOpcodeName());
 					if (op == "shl") {
 						// TODO: check

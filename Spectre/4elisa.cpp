@@ -46,7 +46,7 @@ namespace {
 			std::unordered_map<Instruction *, Status> val2status;
 			statusString[init] = "init";
 			statusString[mul] = "mul"; 
-			statusString[storeAfterMul] = "storeAfterAll";
+			statusString[storeAfterMul] = "storeAfterMul";
 			statusString[sext] = "sext";
 			statusString[storeAfterSext] = "storeAfterSext";
 			statusString[getelementptr] = "getelementptr";

@@ -1,0 +1,1015 @@
+shl by 9
+find mul is true
+front_status is init
+op is shl
+cur_status is mul
+front_status is mul
+op is select
+front_status is mul
+op is sub
+shl by 9
+find mul is true
+front_status is init
+op is shl
+cur_status is mul
+front_status is mul
+op is phi
+shl by 9
+find mul is true
+front_status is init
+op is shl
+cur_status is mul
+front_status is mul
+op is and
+shl by 9
+find mul is true
+front_status is init
+op is shl
+cur_status is mul
+front_status is mul
+op is and
+shl by 9
+find mul is true
+front_status is init
+op is shl
+cur_status is mul
+front_status is mul
+op is add
+front_status is mul
+op is phi
+shl by 9
+find mul is true
+front_status is init
+op is shl
+cur_status is mul
+front_status is mul
+op is phi
+front_status is mul
+op is add
+shl by 9
+find mul is true
+front_status is init
+op is shl
+cur_status is mul
+front_status is mul
+op is and
+shl by 9
+find mul is true
+front_status is init
+op is shl
+cur_status is mul
+front_status is mul
+op is or
+shl by 9
+find mul is true
+front_status is init
+op is shl
+cur_status is mul
+front_status is mul
+op is or
+shl by 9
+find mul is true
+front_status is init
+op is shl
+cur_status is mul
+front_status is mul
+op is or
+front_status is mul
+op is or
+shl by 9
+find mul is true
+front_status is init
+op is shl
+cur_status is mul
+front_status is mul
+op is or
+shl by 9
+find mul is true
+front_status is init
+op is shl
+cur_status is mul
+front_status is mul
+op is or
+shl by 9
+find mul is true
+front_status is init
+op is shl
+cur_status is mul
+front_status is mul
+op is or
+shl by 9
+find mul is true
+front_status is init
+op is shl
+cur_status is mul
+front_status is mul
+op is or
+shl by 9
+find mul is true
+front_status is init
+op is shl
+cur_status is mul
+front_status is mul
+op is store
+cur_status is storeAfterAll
+front_status is storeAfterAll
+op is store
+shl by 9
+find mul is true
+front_status is init
+op is shl
+cur_status is mul
+front_status is mul
+op is trunc
+shl by 9
+find mul is true
+front_status is init
+op is shl
+cur_status is mul
+front_status is mul
+op is select
+shl by 9
+find mul is true
+front_status is init
+op is shl
+cur_status is mul
+front_status is mul
+op is trunc
+shl by 9
+find mul is true
+front_status is init
+op is shl
+cur_status is mul
+front_status is mul
+op is select
+front_status is mul
+op is icmp
+shl by 9
+find mul is true
+front_status is init
+op is shl
+cur_status is mul
+front_status is mul
+op is icmp
+shl by 9
+find mul is true
+front_status is init
+op is shl
+cur_status is mul
+front_status is mul
+op is sub
+shl by 9
+find mul is true
+front_status is init
+op is shl
+cur_status is mul
+front_status is mul
+op is phi
+shl by 9
+find mul is true
+front_status is init
+op is shl
+cur_status is mul
+front_status is mul
+op is call
+shl by 9
+find mul is true
+front_status is init
+op is shl
+cur_status is mul
+front_status is mul
+op is call
+shl by 9
+find mul is true
+front_status is init
+op is shl
+cur_status is mul
+front_status is mul
+op is call
+shl by 9
+find mul is true
+front_status is init
+op is shl
+cur_status is mul
+front_status is mul
+op is call
+shl by 9
+find mul is true
+front_status is init
+op is shl
+cur_status is mul
+front_status is mul
+op is call
+front_status is mul
+op is store
+cur_status is storeAfterAll
+front_status is storeAfterAll
+op is store
+shl by 9
+find mul is true
+front_status is init
+op is shl
+cur_status is mul
+front_status is mul
+op is store
+cur_status is storeAfterAll
+front_status is mul
+op is icmp
+front_status is storeAfterAll
+op is store
+front_status is storeAfterAll
+op is load
+cur_status is mul
+front_status is mul
+op is icmp
+shl by 9
+find mul is true
+front_status is init
+op is shl
+cur_status is mul
+front_status is mul
+op is call
+shl by 9
+find mul is true
+front_status is init
+op is shl
+cur_status is mul
+front_status is mul
+op is sub
+shl by 9
+find mul is true
+front_status is init
+op is shl
+cur_status is mul
+front_status is mul
+op is phi
+shl by 9
+find mul is true
+front_status is init
+op is shl
+cur_status is mul
+front_status is mul
+op is and
+shl by 9
+find mul is true
+front_status is init
+op is shl
+cur_status is mul
+front_status is mul
+op is call
+shl by 9
+find mul is true
+front_status is init
+op is shl
+cur_status is mul
+front_status is mul
+op is select
+front_status is mul
+op is icmp
+shl by 9
+find mul is true
+front_status is init
+op is shl
+cur_status is mul
+front_status is mul
+op is select
+front_status is mul
+op is icmp
+shl by 9
+find mul is true
+front_status is init
+op is shl
+cur_status is mul
+front_status is mul
+op is icmp
+shl by 9
+find mul is true
+front_status is init
+op is shl
+cur_status is mul
+front_status is mul
+op is or
+shl by 9
+find mul is true
+front_status is init
+op is shl
+cur_status is mul
+front_status is mul
+op is or
+shl by 9
+find mul is true
+front_status is init
+op is shl
+cur_status is mul
+front_status is mul
+op is or
+shl by 9
+find mul is true
+front_status is init
+op is shl
+cur_status is mul
+front_status is mul
+op is or
+shl by 9
+find mul is true
+front_status is init
+op is shl
+cur_status is mul
+front_status is mul
+op is phi
+front_status is mul
+op is zext
+shl by 9
+find mul is true
+front_status is init
+op is shl
+cur_status is mul
+front_status is mul
+op is or
+shl by 9
+find mul is true
+front_status is init
+op is shl
+cur_status is mul
+front_status is mul
+op is and
+shl by 9
+find mul is true
+front_status is init
+op is shl
+cur_status is mul
+front_status is mul
+op is sext
+cur_status is sext
+front_status is sext
+op is or
+shl by 9
+find mul is true
+front_status is init
+op is shl
+cur_status is mul
+front_status is mul
+op is and
+shl by 9
+find mul is true
+front_status is init
+op is shl
+cur_status is mul
+front_status is mul
+op is zext
+shl by 9
+find mul is true
+front_status is init
+op is shl
+cur_status is mul
+front_status is mul
+op is and
+shl by 9
+find mul is true
+front_status is init
+op is shl
+cur_status is mul
+front_status is mul
+op is and
+shl by 9
+find mul is true
+front_status is init
+op is shl
+cur_status is mul
+front_status is mul
+op is and
+shl by 9
+find mul is true
+front_status is init
+op is shl
+cur_status is mul
+front_status is mul
+op is and
+shl by 9
+find mul is true
+front_status is init
+op is shl
+cur_status is mul
+front_status is mul
+op is or
+shl by 9
+find mul is true
+front_status is init
+op is shl
+cur_status is mul
+front_status is mul
+op is or
+front_status is mul
+op is select
+shl by 9
+find mul is true
+front_status is init
+op is shl
+cur_status is mul
+front_status is mul
+op is or
+front_status is mul
+op is select
+shl by 9
+find mul is true
+front_status is init
+op is shl
+cur_status is mul
+front_status is mul
+op is add
+shl by 9
+find mul is true
+front_status is init
+op is shl
+cur_status is mul
+front_status is mul
+op is or
+shl by 9
+find mul is true
+front_status is init
+op is shl
+cur_status is mul
+front_status is mul
+op is or
+shl by 9
+find mul is true
+front_status is init
+op is shl
+cur_status is mul
+front_status is mul
+op is add
+shl by 9
+find mul is true
+front_status is init
+op is shl
+cur_status is mul
+front_status is mul
+op is add
+shl by 9
+find mul is true
+front_status is init
+op is shl
+cur_status is mul
+front_status is mul
+op is or
+front_status is mul
+op is or
+front_status is mul
+op is or
+front_status is mul
+op is or
+shl by 9
+find mul is true
+front_status is init
+op is shl
+cur_status is mul
+front_status is mul
+op is add
+shl by 9
+find mul is true
+front_status is init
+op is shl
+cur_status is mul
+front_status is mul
+op is add
+shl by 9
+find mul is true
+front_status is init
+op is shl
+cur_status is mul
+front_status is mul
+op is add
+shl by 9
+find mul is true
+front_status is init
+op is shl
+cur_status is mul
+front_status is mul
+op is add
+shl by 9
+find mul is true
+front_status is init
+op is shl
+cur_status is mul
+front_status is mul
+op is add
+front_status is mul
+op is add
+front_status is mul
+op is add
+front_status is mul
+op is add
+front_status is mul
+op is add
+front_status is mul
+op is add
+shl by 9
+find mul is true
+front_status is init
+op is shl
+cur_status is mul
+front_status is mul
+op is add
+front_status is mul
+op is add
+front_status is mul
+op is add
+front_status is mul
+op is add
+front_status is mul
+op is add
+shl by 9
+find mul is true
+front_status is init
+op is shl
+cur_status is mul
+front_status is mul
+op is add
+front_status is mul
+op is add
+front_status is mul
+op is add
+shl by 9
+find mul is true
+front_status is init
+op is shl
+cur_status is mul
+front_status is mul
+op is add
+front_status is mul
+op is add
+shl by 9
+find mul is true
+front_status is init
+op is shl
+cur_status is mul
+front_status is mul
+op is and
+shl by 9
+find mul is true
+front_status is init
+op is shl
+cur_status is mul
+front_status is mul
+op is add
+shl by 9
+find mul is true
+front_status is init
+op is shl
+cur_status is mul
+front_status is mul
+op is or
+front_status is mul
+op is or
+front_status is mul
+op is or
+front_status is mul
+op is or
+front_status is mul
+op is or
+front_status is mul
+op is or
+shl by 9
+find mul is true
+front_status is init
+op is shl
+cur_status is mul
+front_status is mul
+op is store
+cur_status is storeAfterAll
+front_status is storeAfterAll
+op is load
+cur_status is mul
+front_status is storeAfterAll
+op is load
+cur_status is mul
+front_status is storeAfterAll
+op is store
+front_status is mul
+op is store
+cur_status is storeAfterAll
+front_status is mul
+op is store
+cur_status is storeAfterAll
+front_status is storeAfterAll
+op is store
+front_status is storeAfterAll
+op is store
+shl by 9
+find mul is true
+front_status is init
+op is shl
+cur_status is mul
+front_status is mul
+op is trunc
+shl by 9
+find mul is true
+front_status is init
+op is shl
+cur_status is mul
+front_status is mul
+op is trunc
+shl by 9
+find mul is true
+front_status is init
+op is shl
+cur_status is mul
+front_status is mul
+op is select
+front_status is mul
+op is icmp
+shl by 9
+find mul is true
+front_status is init
+op is shl
+cur_status is mul
+front_status is mul
+op is trunc
+shl by 9
+find mul is true
+front_status is init
+op is shl
+cur_status is mul
+front_status is mul
+op is mul
+front_status is mul
+op is call
+shl by 9
+find mul is true
+front_status is init
+op is shl
+cur_status is mul
+front_status is mul
+op is call
+shl by 9
+find mul is true
+front_status is init
+op is shl
+cur_status is mul
+front_status is mul
+op is icmp
+shl by 9
+find mul is true
+front_status is init
+op is shl
+cur_status is mul
+front_status is mul
+op is and
+shl by 9
+find mul is true
+front_status is init
+op is shl
+cur_status is mul
+front_status is mul
+op is and
+shl by 9
+find mul is true
+front_status is init
+op is shl
+cur_status is mul
+front_status is mul
+op is and
+shl by 9
+find mul is true
+front_status is init
+op is shl
+cur_status is mul
+front_status is mul
+op is and
+shl by 9
+find mul is true
+front_status is init
+op is shl
+cur_status is mul
+front_status is mul
+op is getelementptr
+shl by 9
+find mul is true
+front_status is init
+op is shl
+cur_status is mul
+front_status is mul
+op is or
+shl by 9
+find mul is true
+front_status is init
+op is shl
+cur_status is mul
+front_status is mul
+op is store
+cur_status is storeAfterAll
+front_status is storeAfterAll
+op is store
+shl by 9
+find mul is true
+front_status is init
+op is shl
+cur_status is mul
+front_status is mul
+op is store
+cur_status is storeAfterAll
+front_status is storeAfterAll
+op is store
+shl by 9
+find mul is true
+front_status is init
+op is shl
+cur_status is mul
+front_status is mul
+op is trunc
+shl by 9
+find mul is true
+front_status is init
+op is shl
+cur_status is mul
+front_status is mul
+op is zext
+shl by 9
+find mul is true
+front_status is init
+op is shl
+cur_status is mul
+front_status is mul
+op is zext
+shl by 9
+find mul is true
+front_status is init
+op is shl
+cur_status is mul
+front_status is mul
+op is zext
+shl by 9
+find mul is true
+front_status is init
+op is shl
+cur_status is mul
+front_status is mul
+op is and
+shl by 9
+find mul is true
+front_status is init
+op is shl
+cur_status is mul
+front_status is mul
+op is or
+shl by 9
+find mul is true
+front_status is init
+op is shl
+cur_status is mul
+front_status is mul
+op is store
+cur_status is storeAfterAll
+front_status is mul
+op is call
+front_status is mul
+op is icmp
+front_status is storeAfterAll
+op is store
+shl by 9
+find mul is true
+front_status is init
+op is shl
+cur_status is mul
+front_status is mul
+op is and
+front_status is mul
+op is store
+cur_status is storeAfterAll
+front_status is storeAfterAll
+op is store
+shl by 9
+find mul is true
+front_status is init
+op is shl
+cur_status is mul
+front_status is mul
+op is and
+front_status is mul
+op is store
+cur_status is storeAfterAll
+front_status is storeAfterAll
+op is store
+shl by 9
+find mul is true
+front_status is init
+op is shl
+cur_status is mul
+front_status is mul
+op is sub
+shl by 9
+find mul is true
+front_status is init
+op is shl
+cur_status is mul
+front_status is mul
+op is icmp
+shl by 9
+find mul is true
+front_status is init
+op is shl
+cur_status is mul
+front_status is mul
+op is or
+shl by 9
+find mul is true
+front_status is init
+op is shl
+cur_status is mul
+front_status is mul
+op is or
+shl by 9
+find mul is true
+front_status is init
+op is shl
+cur_status is mul
+front_status is mul
+op is or
+shl by 9
+find mul is true
+front_status is init
+op is shl
+cur_status is mul
+front_status is mul
+op is or
+shl by 9
+find mul is true
+front_status is init
+op is shl
+cur_status is mul
+front_status is mul
+op is sub
+front_status is mul
+op is icmp
+shl by 9
+find mul is true
+front_status is init
+op is shl
+cur_status is mul
+front_status is mul
+op is icmp
+shl by 9
+find mul is true
+front_status is init
+op is shl
+cur_status is mul
+front_status is mul
+op is or
+shl by 9
+find mul is true
+front_status is init
+op is shl
+cur_status is mul
+front_status is mul
+op is store
+cur_status is storeAfterAll
+front_status is storeAfterAll
+op is store
+shl by 9
+find mul is true
+front_status is init
+op is shl
+cur_status is mul
+front_status is mul
+op is store
+cur_status is storeAfterAll
+front_status is storeAfterAll
+op is store
+shl by 9
+find mul is true
+front_status is init
+op is shl
+cur_status is mul
+front_status is mul
+op is store
+cur_status is storeAfterAll
+front_status is storeAfterAll
+op is store
+shl by 9
+find mul is true
+front_status is init
+op is shl
+cur_status is mul
+front_status is mul
+op is store
+cur_status is storeAfterAll
+front_status is storeAfterAll
+op is store
+shl by 9
+find mul is true
+front_status is init
+op is shl
+cur_status is mul
+front_status is mul
+op is store
+cur_status is storeAfterAll
+front_status is storeAfterAll
+op is store
+shl by 9
+find mul is true
+front_status is init
+op is shl
+cur_status is mul
+front_status is mul
+op is store
+cur_status is storeAfterAll
+front_status is storeAfterAll
+op is store
+shl by 9
+find mul is true
+front_status is init
+op is shl
+cur_status is mul
+front_status is mul
+op is add
+shl by 9
+find mul is true
+front_status is init
+op is shl
+cur_status is mul
+front_status is mul
+op is and
+shl by 9
+find mul is true
+front_status is init
+op is shl
+cur_status is mul
+front_status is mul
+op is trunc
+shl by 9
+find mul is true
+front_status is init
+op is shl
+cur_status is mul
+front_status is mul
+op is add
+shl by 9
+find mul is true
+front_status is init
+op is shl
+cur_status is mul
+front_status is mul
+op is add
+shl by 9
+find mul is true
+front_status is init
+op is shl
+cur_status is mul
+front_status is mul
+op is add
+shl by 9
+find mul is true
+front_status is init
+op is shl
+cur_status is mul
+front_status is mul
+op is add
+shl by 9
+find mul is true
+front_status is init
+op is shl
+cur_status is mul
+front_status is mul
+op is add
+shl by 9
+find mul is true
+front_status is init
+op is shl
+cur_status is mul
+front_status is mul
+op is add
+shl by 9
+find mul is true
+front_status is init
+op is shl
+cur_status is mul
+front_status is mul
+op is or
+shl by 9
+find mul is true
+front_status is init
+op is shl
+cur_status is mul
+front_status is mul
+op is or
+shl by 9
+find mul is true
+front_status is init
+op is shl
+cur_status is mul
+front_status is mul
+op is or
+shl by 9
+find mul is true
+front_status is init
+op is shl
+cur_status is mul
+front_status is mul
+op is or
+shl by 9
+find mul is true
+front_status is init
+op is shl
+cur_status is mul
+front_status is mul
+op is or

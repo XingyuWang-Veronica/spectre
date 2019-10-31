@@ -21,15 +21,17 @@ using namespace llvm;
 
 /* 
  * valid state diagram:
- * 		mul -> (storeAfterMul -> mul) -> sext -> (storeAfterSext -> sext) -> getelementptr
+ * 		init -> mul -> (storeAfterMul -> mul) -> sext -> (storeAfterSext -> sext) -> getelementptr
  * 
+ * init: 
  * mul: mul / shl / load (after store)
  * storeAfterMul: store
  * sext: sext / load (after store)
  * storeAfterSext: store
  * getelementptr: getelementptr
  */
-enum Status {mul, storeAfterMul, sext, storeAfterSext, getelementptr, invalid};
+enum Status {init, mul, storeAfterMul, sext, storeAfterSext, getelementptr, invalid};
+std::unordered_map<Status, std::string> statusString;
 
 namespace {
 	struct Spectre: public FunctionPass {
@@ -42,7 +44,13 @@ namespace {
 
 		bool runOnFunction(Function &F) override {
 			std::unordered_map<Instruction *, Status> val2status;
-			
+			statusString[init] = "init";
+			statusString[mul] = "mul"; 
+			statusString[storeAfterMul] = "storeAfterAll";
+			statusString[sext] = "sext";
+			statusString[storeAfterSext] = "storeAfterSext";
+			statusString[getelementptr] = "getelementptr";
+			statusString[invalid] = "invalid";
 			for (BasicBlock &BB: F) {
 				for (Instruction &I: BB) {
 					std::string op = std::string(I.getOpcodeName());
@@ -68,17 +76,22 @@ namespace {
 						}
 					}
 					if (find_mul) {
+						errs() << "find mul is true\n";
 						val2status[&I] = mul;
-						// state diagram, initial stage is mul
+						// state diagram, initial stage is init
 						std::deque<Instruction *> values;
 						values.push_back(&I);
 						while (!values.empty()) {
 							Instruction *front_val = values.front();
 							values.pop_front();
 							Status front_status = val2status[front_val];
+							errs() << "front_status is " << statusString[front_status] << '\n';
 							std::string op = std::string(front_val->getOpcodeName());
+							errs() << "op is " << op << '\n';
 							Status cur_status;
-							if (op == "store" && front_status == mul) {
+							if ((op == "mul" || op == "shl") && front_status == init) {
+								cur_status = mul;
+							} else if (op == "store" && front_status == mul) {
 								cur_status = storeAfterMul;
 							} else if (op == "load" && front_status == storeAfterMul) {
 								cur_status = mul;
@@ -96,6 +109,7 @@ namespace {
 								cur_status = invalid;
 								continue;
 							}
+							errs() << "cur_status is " << statusString[cur_status] << '\n';
 							for (auto user: front_val->users()) {
 								if (isa<Instruction>(user)) {
 									Instruction *ii = cast<Instruction>(user);

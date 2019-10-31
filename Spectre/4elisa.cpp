@@ -4,6 +4,8 @@
 #include "llvm/IR/LegacyPassManager.h"
 #include "llvm/Transforms/IPO/PassManagerBuilder.h"
 #include "llvm/IR/Constants.h"
+#include <unordered_map>
+#include <deque>
 
 using namespace llvm;
 
@@ -12,10 +14,23 @@ using namespace llvm;
  * 
  * %1 = mul nsw %secret, 512 (or %1 = shl %secret, 9)
  * %2 = sext i32 %1 to i64
- * %2 = getelementptr inbounds i32, i32* getelementptr inbounds (...), i64 %2
+ * %3 = getelementptr inbounds i32, i32* getelementptr inbounds (...), i64 %2
  *
  * NOTE: there can be multiple store + load between 1 and 2, and between 2 and 3
  */
+
+/* 
+ * valid state diagram:
+ * 		mul -> (storeAfterMul -> mul) -> sext -> (storeAfterSext -> sext) -> getelementptr
+ * 
+ * mul: mul / shl / load (after store)
+ * storeAfterMul: store
+ * sext: sext / load (after store)
+ * storeAfterSext: store
+ * getelementptr: getelementptr
+ */
+enum Status {mul, storeAfterMul, sext, storeAfterSext, getelementptr};
+
 namespace {
 	struct Spectre: public FunctionPass {
 		static char ID;
@@ -26,6 +41,8 @@ namespace {
 		}
 
 		bool runOnFunction(Function &F) override {
+			std::unordered_map<Instruction *, Status> val2status;
+			
 			for (BasicBlock &BB: F) {
 				for (Instruction &I: BB) {
 					std::string op = std::string(I.getOpcodeName());
@@ -51,8 +68,17 @@ namespace {
 						}
 					}
 					if (find_mul) {
-						// next stage shall be getelementptr
-						// ignore: store + load, sext
+						val2status[&I] = mul;
+						// state diagram, initial stage is mul
+						std::deque<Instruction *> values;
+						values.push_back(&I);
+						while (!values.empty()) {
+							Instruction *front_val = values.front();
+							values.pop_front();
+							Status front_status = val2status[front_val];
+							std::string op = std::string(front_val->getOpcodeName());
+							// 
+						}
 					}
 				}
 			}

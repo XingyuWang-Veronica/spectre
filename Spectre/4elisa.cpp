@@ -97,8 +97,10 @@ namespace {
 								continue;
 							}
 							for (auto user: front_val->users()) {
-								if (auto i = dyn_cast<Instruction>(user)) {
+								if (isa<Instruction>(user)) {
 									Instruction *ii = cast<Instruction>(user);
+									val2status[ii] = cur_status;
+									values.push_back(ii);
 								}
 							}
 						}

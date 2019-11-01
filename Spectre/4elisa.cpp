@@ -71,7 +71,7 @@ namespace {
 						// TODO: check
 						if (ConstantInt *CI = dyn_cast<ConstantInt>(I.getOperand(1))) {
 							// errs() << "shl by a constant value\n";
-							if (CI->getSExtValue() >= 9) {
+							if (CI->getSExtValue() >= 8) {
 								errs() << "shl by " << CI->getSExtValue() << "\n";
 								find_mul = true;
 							}
@@ -81,7 +81,7 @@ namespace {
 						if (ConstantInt *CI = dyn_cast<ConstantInt>(I.getOperand(1))) { 
 							// errs() << "mul by a constant value\n";
 							// errs() << "mul by " << CI->getSExtValue() << '\n';
-							if (CI->getSExtValue() >= 512) {
+							if (CI->getSExtValue() >= 256) {
 								errs() << "mul by " << CI->getSExtValue() << "\n";
 								find_mul = true;
 								is_mul = true;
@@ -97,6 +97,9 @@ namespace {
 						values.push_back(&I);
 						while (!values.empty()) {
 							Instruction *front_val = values.front();
+							errs() << "front_val is ";
+							front_val->print(errs());
+							errs() << "\n";
 							values.pop_front();
 							Status front_status = val2status[front_val];
 							errs() << "front_status is " << statusString[front_status] << '\n';
@@ -126,7 +129,7 @@ namespace {
 								cur_status = storeAfterZext;
 							} else if (op == "load" && front_status == storeAfterZext) {
 								cur_status = zext;
-							} else if (op == "getelementptr" && (front_status == sext || front_status == zext)) {
+							} else if (op == "getelementptr" && (front_status == sext || front_status == zext || front_status == shl || front_status == mul)) {
 								cur_status = getelementptr;
 								// TODO: restriction
 								// errs() << "Found the gadget!\n";

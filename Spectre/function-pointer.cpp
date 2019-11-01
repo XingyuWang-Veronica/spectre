@@ -1,6 +1,8 @@
 #include "llvm/Pass.h"
 #include "llvm/IR/Function.h"
+#include "llvm/IR/BasicBlock.h"
 #include "llvm/IR/Instruction.h"
+#include "llvm/IR/Instructions.h"
 #include "llvm/IR/LegacyPassManager.h"
 #include "llvm/Transforms/IPO/PassManagerBuilder.h"
 
@@ -27,6 +29,20 @@ namespace {
 		}
 
 		bool runOnFunction(Function &F) override {
+			for (BasicBlock &BB: F) {
+				for (Instruction &I: BB) {
+					if (isa<CallInst>(I)) {
+						I.print(errs());
+						errs() << "\n";
+						Value *func = I.getOperand(0);
+						/* 
+						 * TODO: check if the this basic block is NOT the same with the basic block that loads func
+						 */
+						// find the def of func
+
+					}
+				}
+			}
 			return false;
 		}
 	};

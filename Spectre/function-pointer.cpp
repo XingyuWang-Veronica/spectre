@@ -4,6 +4,16 @@
 #include "llvm/IR/LegacyPassManager.h"
 #include "llvm/Transforms/IPO/PassManagerBuilder.h"
 
+/*
+ * gadget finding for the following pattern:
+ *
+ * secret = load(secret_addr);
+ * if (condition) {
+ * 	call secret;
+ * }
+ *
+ * where secret is a function pointer
+ */
 
 using namespace llvm;
 

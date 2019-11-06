@@ -7,7 +7,7 @@ for d in */; do
 	for f in *.bc; do
 		echo $f
 		# test on this .bc file
-		~/llvm-project/build/bin/opt -load ~/llvm-project/build/lib/LLVMSpectre.so -s < $f > /dev/null
+		~/llvm-project/build/bin/opt -load ~/llvm-project/build/lib/LLVMSpectre.so -ic < $f > /dev/null
 	done
 	cd ..
 done

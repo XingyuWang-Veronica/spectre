@@ -1,5 +1,5 @@
 # spectre
 
-Currently working on `Spectre/i-cache.cpp` and `Spectre/function-pointer.cpp`
+Currently working on `Spectre/i-cache.cpp` and have found many gadgets in linux kernel
 
-Pending: `Spectre/4elisa.cpp` to search for a very specific gadget.
+Pending: `4elisa.cpp`; `Spectre/function-pointer.cpp`
